@@ -16,7 +16,13 @@ class _AuthenState extends State<Authen> {
     screenWidth = MediaQuery.of(context).size.width; //กำหนดให้ screenWidth มีขนาดเท่าความกว้างของจอ
     screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: MyStyle().buildBackground(screenWidth!, screenHeight!),
+      body: Stack(
+        children: [
+          MyStyle().buildBackground(screenWidth!, screenHeight!),
+          Container(width: screenWidth!*(0.4),//ใช้ container เพื่อให้object มีSize ตามที่เราต้องการ
+            child: MyStyle().showLogo()),
+        ],
+      ),
     );
   }
 }
