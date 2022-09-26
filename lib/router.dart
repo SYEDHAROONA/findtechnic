@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:findtechnic/states/authen.dart';
 import 'package:flutter/material.dart';
 
