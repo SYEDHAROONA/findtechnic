@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MyStyle {
-  Color darkColor = Color(0xff005400);
-  Color primaryColor = Color(0xff39821a);
-  Color lightColor = Color(0xff6bb249);
+  Color darkColor = Color.fromARGB(255, 26, 38, 199);
+  Color primaryColor = Color.fromARGB(255, 32, 46, 243);
+  Color lightColor = Color.fromARGB(255, 35, 185, 245);
 
   TextStyle darkStyle() => TextStyle(color: darkColor);
   TextStyle whiteStyle() => TextStyle(color: Color.fromARGB(255, 59, 58, 58));

@@ -21,24 +21,7 @@ class _AuthenState extends State<Authen> {
         .width; //กำหนดให้ screenWidth มีขนาดเท่าความกว้างของจอ
     screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            width: 50,
-          ),
-          Text(
-            'Non Account ?',
-            style: MyStyle().whiteStyle(),
-          ),
-          TextButton(
-              onPressed: () {},
-              child: Text(
-                'Create Account',
-                style: MyStyle().blackStyle(),
-              ))
-        ],
-      ),
+      floatingActionButton: buildCreateAccount(),
       body: SafeArea(
         //widget SafeArea ใช้ในการทำให้โลโก้อยู่ในกรอบหน้าจอ
         child: Stack(
@@ -68,6 +51,27 @@ class _AuthenState extends State<Authen> {
           ],
         ),
       ),
+    );
+  }
+
+  Row buildCreateAccount() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: 50,
+        ),
+        Text(
+          'Non Account ?',
+          style: MyStyle().whiteStyle(),
+        ),
+        TextButton(
+            onPressed: ()=>Navigator.pushNamed(context, '/createAccount'),
+            child: Text(
+              'Create Account',
+              style: MyStyle().blackStyle(),
+            ))
+      ],
     );
   }
 
