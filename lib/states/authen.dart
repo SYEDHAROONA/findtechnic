@@ -1,5 +1,7 @@
 import 'package:findtechnic/utility/my_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/button_list.dart';
+import 'package:flutter_signin_button/button_view.dart';
 
 class Authen extends StatefulWidget {
   const Authen({super.key});
@@ -19,6 +21,24 @@ class _AuthenState extends State<Authen> {
         .width; //กำหนดให้ screenWidth มีขนาดเท่าความกว้างของจอ
     screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 50,
+          ),
+          Text(
+            'Non Account ?',
+            style: MyStyle().whiteStyle(),
+          ),
+          TextButton(
+              onPressed: () {},
+              child: Text(
+                'Create Account',
+                style: MyStyle().blackStyle(),
+              ))
+        ],
+      ),
       body: SafeArea(
         //widget SafeArea ใช้ในการทำให้โลโก้อยู่ในกรอบหน้าจอ
         child: Stack(
@@ -31,10 +51,17 @@ class _AuthenState extends State<Authen> {
             ),
             Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   buildUser(),
                   buildPassword(),
+                  buildSignInEmail(),
+                  buildSignInGoogle(),
+                  buildSignInFacebook(),
+                  buildSignInlApple(),
+                  SizedBox(
+                    height: screenHeight! * 0.1,
+                  )
                 ],
               ),
             ),
@@ -44,6 +71,46 @@ class _AuthenState extends State<Authen> {
     );
   }
 
+  Container buildSignInEmail() => Container(
+        margin: EdgeInsets.only(top: 8),
+        child: SignInButton(
+          Buttons.Email,
+          onPressed: () {},
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        ),
+      );
+
+  Container buildSignInGoogle() => Container(
+        margin: EdgeInsets.only(top: 8),
+        child: SignInButton(
+          Buttons.GoogleDark,
+          onPressed: () {},
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        ),
+      );
+
+  Container buildSignInFacebook() => Container(
+        margin: EdgeInsets.only(top: 8),
+        child: SignInButton(
+          Buttons.FacebookNew,
+          onPressed: () {},
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        ),
+      );
+
+  Container buildSignInlApple() => Container(
+        margin: EdgeInsets.only(top: 8),
+        child: SignInButton(
+          Buttons.AppleDark,
+          onPressed: () {},
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        ),
+      );
+
   Container buildUser() {
     return Container(
       margin: EdgeInsets.only(top: 16),
@@ -52,7 +119,8 @@ class _AuthenState extends State<Authen> {
         //สร้างช่องในการใส่ข้อความ
         decoration: InputDecoration(
           prefixIcon: Icon(
-            Icons.perm_identity, //perm คือช่อไอคอนที่อยู่ใน material.io (ของgoogle)
+            Icons
+                .perm_identity, //perm คือช่อไอคอนที่อยู่ใน material.io (ของgoogle)
             color: MyStyle().darkColor,
           ),
           labelStyle: MyStyle().darkStyle(),
@@ -79,7 +147,10 @@ class _AuthenState extends State<Authen> {
           suffix: IconButton(
             //suffix สร้างไอคอนที่สามารภเปลี่ยนแปลงได้
             icon: Icon(
-              redEye ? Icons.remove_red_eye_outlined: Icons.remove_red_eye_sharp, //กำหนดให้ไอคอน redEye เปลี่ยนไปเมื่อกดไอคอน
+              redEye
+                  ? Icons.remove_red_eye_outlined
+                  : Icons
+                      .remove_red_eye_sharp, //กำหนดให้ไอคอน redEye เปลี่ยนไปเมื่อกดไอคอน
               color: MyStyle().darkColor,
             ),
             onPressed: () {
@@ -107,7 +178,7 @@ class _AuthenState extends State<Authen> {
 
   Container buildLogo() {
     return Container(
-        width: screenWidth! * (0.4), //ใช้ container เพื่อให้object มีSize ตามที่เราต้องการ
+        width: screenWidth! * (0.35), //ใช้ container เพื่อให้object มีSize ตามที่เราต้องการ
         child: MyStyle().showLogo());
   }
 }

@@ -6,7 +6,8 @@ class MyStyle {
   Color lightColor = Color(0xff6bb249);
 
   TextStyle darkStyle() => TextStyle(color: darkColor);
-
+  TextStyle whiteStyle() => TextStyle(color: Color.fromARGB(255, 59, 58, 58));
+  TextStyle blackStyle() => TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 16);
   Widget showLogo() => Image(
         image: AssetImage('images/logo.png'),
       );
