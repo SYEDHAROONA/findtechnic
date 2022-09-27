@@ -41,7 +41,6 @@ class _AuthenState extends State<Authen> {
                   buildSignInEmail(),
                   buildSignInGoogle(),
                   buildSignInFacebook(),
-                  buildSignInlApple(),
                   SizedBox(
                     height: screenHeight! * 0.1,
                   )
@@ -99,16 +98,6 @@ class _AuthenState extends State<Authen> {
         margin: EdgeInsets.only(top: 8),
         child: SignInButton(
           Buttons.FacebookNew,
-          onPressed: () {},
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        ),
-      );
-
-  Container buildSignInlApple() => Container(
-        margin: EdgeInsets.only(top: 8),
-        child: SignInButton(
-          Buttons.AppleDark,
           onPressed: () {},
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),

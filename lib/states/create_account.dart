@@ -1,3 +1,4 @@
+import 'package:findtechnic/utility/dialog.dart';
 import 'package:findtechnic/utility/my_style.dart';
 import 'package:flutter/material.dart';
 
@@ -10,13 +11,13 @@ class CreateAccount extends StatefulWidget {
 
 class _CreateAccountState extends State<CreateAccount> {
   double? screenWidth, screenHeight;
-  String? typeUser;
+  String? typeUser, name, user, password;
 
   Container buildDisplayName() {
     return Container(
       margin: EdgeInsets.only(top: 16),
       width: screenWidth! * 0.6,
-      child: TextField(
+      child: TextField(onChanged: (value) => name = value.trim(),
         //สร้างช่องในการใส่ข้อความ
         decoration: InputDecoration(
           prefixIcon: Icon(
@@ -40,7 +41,7 @@ class _CreateAccountState extends State<CreateAccount> {
     return Container(
       margin: EdgeInsets.only(top: 16),
       width: screenWidth! * 0.6,
-      child: TextField(
+      child: TextField(onChanged: (value) => user = value.trim(),
         //สร้างช่องในการใส่ข้อความ
         decoration: InputDecoration(
           prefixIcon: Icon(
@@ -64,7 +65,7 @@ class _CreateAccountState extends State<CreateAccount> {
     return Container(
       margin: EdgeInsets.only(top: 16),
       width: screenWidth! * 0.6,
-      child: TextField(
+      child: TextField(onChanged: (value) => password = value.trim(),
         //สร้างช่องในการใส่ข้อความ
         decoration: InputDecoration(
           prefixIcon: Icon(
@@ -114,29 +115,37 @@ class _CreateAccountState extends State<CreateAccount> {
             buildTypeTechnichian(),
             buildUser(),
             buildPassword(),
-            Container(
-                margin: EdgeInsets.only(top: 8),
-                width: screenWidth! * 0.6,
-                child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      primary: MyStyle().darkColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                    ),
-                    onPressed: () {},
-                    icon: Icon(Icons.cloud_upload),
-                    label: Text('Create Account'))),
+            buildCreateAccount(),
           ],
         ),
       ),
     );
   }
 
+  Container buildCreateAccount() {
+    return Container(
+              margin: EdgeInsets.only(top: 8),
+              width: screenWidth! * 0.6,
+              child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    primary: MyStyle().darkColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                  ),
+                  onPressed: () {
+                    if ((name?.isEmpty??true)||(user?.isEmpty??true)||(password?.isEmpty??true)){
+                      print('Have space');
+                      normalDialog(context, 'Have space?', 'Please Fill Every Blank');
+                    }
+                  },
+                  icon: Icon(Icons.cloud_upload),
+                  label: Text('Create Account')));
+  }
+
   Container buildTypeUser() {
     return Container(
       width: screenWidth! * 0.6,
-      child: RadioListTile(
-        //ช่องกลมเพื่อติ๊ก
+      child: RadioListTile(//ช่องกลมเพื่อติ๊ก
         value: 'user',
         groupValue: typeUser,
         onChanged: (value) {},

@@ -7,7 +7,11 @@ class MyStyle {
 
   TextStyle darkStyle() => TextStyle(color: darkColor);
   TextStyle whiteStyle() => TextStyle(color: Color.fromARGB(255, 59, 58, 58));
-  TextStyle blackStyle() => TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 16);
+  TextStyle blackStyle() =>
+      TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 16);
+  TextStyle noticeStyle() =>
+      TextStyle(color: Color.fromARGB(255, 179, 11, 11), fontWeight: FontWeight.w700, fontSize: 16);
+  
   Widget showLogo() => Image(
         image: AssetImage('images/logo.png'),
       );
