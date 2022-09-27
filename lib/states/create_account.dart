@@ -17,7 +17,8 @@ class _CreateAccountState extends State<CreateAccount> {
     return Container(
       margin: EdgeInsets.only(top: 16),
       width: screenWidth! * 0.6,
-      child: TextField(onChanged: (value) => name = value.trim(),
+      child: TextField(
+        onChanged: (value) => name = value.trim(),
         //สร้างช่องในการใส่ข้อความ
         decoration: InputDecoration(
           prefixIcon: Icon(
@@ -41,7 +42,8 @@ class _CreateAccountState extends State<CreateAccount> {
     return Container(
       margin: EdgeInsets.only(top: 16),
       width: screenWidth! * 0.6,
-      child: TextField(onChanged: (value) => user = value.trim(),
+      child: TextField(
+        onChanged: (value) => user = value.trim(),
         //สร้างช่องในการใส่ข้อความ
         decoration: InputDecoration(
           prefixIcon: Icon(
@@ -65,7 +67,8 @@ class _CreateAccountState extends State<CreateAccount> {
     return Container(
       margin: EdgeInsets.only(top: 16),
       width: screenWidth! * 0.6,
-      child: TextField(onChanged: (value) => password = value.trim(),
+      child: TextField(
+        onChanged: (value) => password = value.trim(),
         //สร้างช่องในการใส่ข้อความ
         decoration: InputDecoration(
           prefixIcon: Icon(
@@ -124,31 +127,41 @@ class _CreateAccountState extends State<CreateAccount> {
 
   Container buildCreateAccount() {
     return Container(
-              margin: EdgeInsets.only(top: 8),
-              width: screenWidth! * 0.6,
-              child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    primary: MyStyle().darkColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                  ),
-                  onPressed: () {
-                    if ((name?.isEmpty??true)||(user?.isEmpty??true)||(password?.isEmpty??true)){
-                      print('Have space');
-                      normalDialog(context, 'Have space?', 'Please Fill Every Blank');
-                    }
-                  },
-                  icon: Icon(Icons.cloud_upload),
-                  label: Text('Create Account')));
+        margin: EdgeInsets.only(top: 8),
+        width: screenWidth! * 0.6,
+        child: ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              primary: MyStyle().darkColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30)),
+            ),
+            onPressed: () {
+              if ((name?.isEmpty ?? true) ||
+                  (user?.isEmpty ?? true) ||
+                  (password?.isEmpty ?? true)) {
+                print('Have space');
+                normalDialog(context, 'Have space?', 'Please Fill Every Blank');
+              } else if (typeUser == null) {//ยังไม่ทำการเลือก typeUser
+                normalDialog(context, 'No TypeUser',
+                    'Please Choose Type User By Click User or Technichian');
+              }
+            },
+            icon: Icon(Icons.cloud_upload),
+            label: Text('Create Account')));
   }
 
   Container buildTypeUser() {
     return Container(
       width: screenWidth! * 0.6,
-      child: RadioListTile(//ช่องกลมเพื่อติ๊ก
+      child: RadioListTile(
+        //ช่องกลมเพื่อติ๊ก
         value: 'user',
         groupValue: typeUser,
-        onChanged: (value) {},
+        onChanged: (value) {
+          setState(() {
+            typeUser = value;
+          });
+        },
         title: Text(
           'User',
           style: MyStyle().darkStyle(),
@@ -164,7 +177,11 @@ class _CreateAccountState extends State<CreateAccount> {
         //ช่องกลมเพื่อติ๊ก
         value: 'Technichian',
         groupValue: typeUser,
-        onChanged: (value) {},
+        onChanged: (value) {
+          setState(() {
+            typeUser = value;
+          });
+        },
         title: Text(
           'Technichian',
           style: MyStyle().darkStyle(),
