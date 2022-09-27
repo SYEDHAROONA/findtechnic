@@ -5,9 +5,11 @@ class MyStyle {
   Color primaryColor = Color(0xff39821a);
   Color lightColor = Color(0xff6bb249);
 
+  TextStyle darkStyle() => TextStyle(color: darkColor);
+
   Widget showLogo() => Image(
-    image: AssetImage('images/logo.png'),
-    );
+        image: AssetImage('images/logo.png'),
+      );
 
   SafeArea buildBackground(double screenWidth, double screenHeight) {
     //มาสร้าง background ไว้ตรงนี้เพื่อง่ายต่อการแก้พื้นหลังในอนาคต
