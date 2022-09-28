@@ -1,5 +1,6 @@
 import 'package:findtechnic/utility/dialog.dart';
 import 'package:findtechnic/utility/my_style.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -140,7 +141,7 @@ class _CreateAccountState extends State<CreateAccount> {
               if ((name?.isEmpty ?? true) ||
                   (user?.isEmpty ?? true) ||
                   (password?.isEmpty ?? true)) {
-                print('Have space');
+                //print('Have space');
                 normalDialog(context, 'Have space?', 'Please Fill Every Blank');
               } else if (typeUser == null) {
                 //ยังไม่ทำการเลือก typeUser
@@ -156,8 +157,17 @@ class _CreateAccountState extends State<CreateAccount> {
 
   Future<Null> createAccountAndInsertInformation() async {
     //method ตัวนี้ทำหน้าที่สร้าง account บน firebase
-    await Firebase.initializeApp()
-        .then((value) => print('##Firebase Initialize Success##'));
+    await Firebase.initializeApp().then((value) async {
+      print('##Firebase Initialize Success##');
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: user!, password: password!)
+          .then((value)async {
+            //print('Create Account Success');
+            await value.user!.updateProfile(displayName: name).then((value) => print('Update Profile Success'));
+          })
+          .catchError((onError) =>
+              normalDialog(context, onError.code, onError.message));
+    });
   }
 
   Container buildTypeUser() {
