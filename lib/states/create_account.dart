@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:findtechnic/models/user_models.dart';
 import 'package:findtechnic/utility/dialog.dart';
 import 'package:findtechnic/utility/my_style.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -161,11 +163,23 @@ class _CreateAccountState extends State<CreateAccount> {
       print('##Firebase Initialize Success##');
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: user!, password: password!)
-          .then((value)async {
-            //print('Create Account Success');
-            await value.user!.updateProfile(displayName: name).then((value) => print('Update Profile Success'));
-          })
-          .catchError((onError) =>
+          .then((value) async {
+        print('Create Account Success');
+        await value.user!.updateProfile(displayName: name).then((value2) async {
+          String uid = value.user!.uid; //ทำการดึงค่า uid ที่ user สมัครมา
+          print('Update Profile Success and uid = $uid');
+
+          UserModel model =
+              UserModel(email: user!, name: name!, typeuser: typeUser!);
+          Map<String, dynamic> data = model.toMap();
+
+          await FirebaseFirestore.instance
+              .collection('user')
+              .doc(uid)
+              .set(data)
+              .then((value) => print('Insert Value To Firestore Succes'));
+        });
+      }).catchError((onError) =>
               normalDialog(context, onError.code, onError.message));
     });
   }
