@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "539694779035",
+    "project_id": "findtechnichian",
+    "storage_bucket": "findtechnichian.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539694779035:android:acf3823e9e17215807d43e",
+        "android_client_info": {
+          "package_name": "com.flutterthailand.findtechnic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "539694779035-5efbt0jbpc6ptdp6i0900th71e1dcnfr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6XgMJ6U1SQQBvnlrP6MkHATdvddz0-5w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "539694779035-5efbt0jbpc6ptdp6i0900th71e1dcnfr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

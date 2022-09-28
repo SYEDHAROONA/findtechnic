@@ -144,6 +144,8 @@ class _CreateAccountState extends State<CreateAccount> {
               } else if (typeUser == null) {//ยังไม่ทำการเลือก typeUser
                 normalDialog(context, 'No TypeUser',
                     'Please Choose Type User By Click User or Technichian');
+              }else{
+                
               }
             },
             icon: Icon(Icons.cloud_upload),
