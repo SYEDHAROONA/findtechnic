@@ -119,7 +119,7 @@ class _CreateAccountState extends State<CreateAccount> {
             buildDisplayName(),
             buildTitle(),
             buildTypeUser(),
-            buildTypeTechnichian(),
+            buildTypeTechnician(),
             buildUser(),
             buildPassword(),
             buildCreateAccount(),
@@ -148,7 +148,7 @@ class _CreateAccountState extends State<CreateAccount> {
               } else if (typeUser == null) {
                 //ยังไม่ทำการเลือก typeUser
                 normalDialog(context, 'No TypeUser',
-                    'Please Choose Type User By Click User or Technichian');
+                    'Please Choose Type User By Click User or Technician');
               } else {
                 createAccountAndInsertInformation();
               }
@@ -177,7 +177,20 @@ class _CreateAccountState extends State<CreateAccount> {
               .collection('user')
               .doc(uid)
               .set(data)
-              .then((value) => print('Insert Value To Firestore Succes'));
+              .then((value) {
+            print('Insert Value To Firestore Succes');
+            switch (typeUser) {
+              case 'user':
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/myServiceUser', (route) => false);
+                break;
+              case 'Technician':
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/myServiceTechnician', (route) => false);
+                break;
+              default:
+            }
+          });
         });
       }).catchError((onError) =>
               normalDialog(context, onError.code, onError.message));
@@ -204,12 +217,12 @@ class _CreateAccountState extends State<CreateAccount> {
     );
   }
 
-  Container buildTypeTechnichian() {
+  Container buildTypeTechnician() {
     return Container(
       width: screenWidth! * 0.6,
       child: RadioListTile(
         //ช่องกลมเพื่อติ๊ก
-        value: 'Technichian',
+        value: 'Technician',
         groupValue: typeUser,
         onChanged: (value) {
           setState(() {
@@ -217,7 +230,7 @@ class _CreateAccountState extends State<CreateAccount> {
           });
         },
         title: Text(
-          'Technichian',
+          'Technician',
           style: MyStyle().darkStyle(),
         ),
       ),
