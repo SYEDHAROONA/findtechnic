@@ -1,5 +1,6 @@
 import 'package:findtechnic/utility/dialog.dart';
 import 'package:findtechnic/utility/my_style.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccount extends StatefulWidget {
@@ -141,15 +142,22 @@ class _CreateAccountState extends State<CreateAccount> {
                   (password?.isEmpty ?? true)) {
                 print('Have space');
                 normalDialog(context, 'Have space?', 'Please Fill Every Blank');
-              } else if (typeUser == null) {//ยังไม่ทำการเลือก typeUser
+              } else if (typeUser == null) {
+                //ยังไม่ทำการเลือก typeUser
                 normalDialog(context, 'No TypeUser',
                     'Please Choose Type User By Click User or Technichian');
-              }else{
-                
+              } else {
+                createAccountAndInsertInformation();
               }
             },
             icon: Icon(Icons.cloud_upload),
             label: Text('Create Account')));
+  }
+
+  Future<Null> createAccountAndInsertInformation() async {
+    //method ตัวนี้ทำหน้าที่สร้าง account บน firebase
+    await Firebase.initializeApp()
+        .then((value) => print('##Firebase Initialize Success##'));
   }
 
   Container buildTypeUser() {
