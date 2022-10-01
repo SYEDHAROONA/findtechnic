@@ -34,13 +34,10 @@ class _AuthenState extends State<Authen> {
             ),
             Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   buildUser(),
                   buildPassword(),
-                  buildSignInEmail(),
-                  buildSignInGoogle(),
-                  buildSignInFacebook(),
                   SizedBox(
                     height: screenHeight! * 0.1,
                   )
@@ -73,36 +70,6 @@ class _AuthenState extends State<Authen> {
       ],
     );
   }
-
-  Container buildSignInEmail() => Container(
-        margin: EdgeInsets.only(top: 8),
-        child: SignInButton(
-          Buttons.Email,
-          onPressed: () {},
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        ),
-      );
-
-  Container buildSignInGoogle() => Container(
-        margin: EdgeInsets.only(top: 8),
-        child: SignInButton(
-          Buttons.GoogleDark,
-          onPressed: () {},
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        ),
-      );
-
-  Container buildSignInFacebook() => Container(
-        margin: EdgeInsets.only(top: 8),
-        child: SignInButton(
-          Buttons.FacebookNew,
-          onPressed: () {},
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        ),
-      );
 
   Container buildUser() {
     return Container(
